@@ -50,7 +50,7 @@ class BbcGoodFoodRecipesScrapperService
   end
 
   def page
-    @page ||= page = Nokogiri::HTML.parse(doc)
+    @page ||= Nokogiri::HTML.parse(doc)
   end
 
   def doc
