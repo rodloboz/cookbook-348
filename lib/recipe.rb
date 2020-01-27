@@ -1,9 +1,15 @@
 class Recipe
-  attr_reader :name, :description
+  attr_reader :name, :description, :duration, :difficulty
 
-  def initialize(name, description)
-    @name = name
-    @description = description
+  def initialize(attributes = {})
+    @name = attributes[:name]
+    @description = attributes[:description]
+    @duration = attributes[:duration]
+    @difficulty = attributes[:difficulty]
+    # If attributes doesn't include done, set
+    # default to false
+    # @done    =      nil   || false
+    @done = attributes[:done] || false
   end
 
   # getter
@@ -16,12 +22,20 @@ class Recipe
   #   @name = name
   # end
 
+  def done?
+    @done
+  end
+
+  def mark_as_done!
+    @done = true
+  end
+
   def to_csv_row
     # user the readers / getters
-    [name, description]
+    [name, description, duration, difficulty, done?]
   end
 
   def to_s
-    "Name: #{name} | Description: #{description}"
+    "[#{done? ? 'x' : ' '}] Name: #{name} | Description: #{description}"
   end
 end

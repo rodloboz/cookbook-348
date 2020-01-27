@@ -11,8 +11,8 @@ class View
     gets.chomp
   end
 
-  def ask_for_index(range)
-    puts "What recipe do you want to remove?"
+  def ask_for_index(range, action)
+    puts "What recipe do you want to #{action}?"
     print "> "
     index = gets.chomp
 
@@ -23,5 +23,11 @@ class View
     end
 
     index.to_i - 1
+  end
+
+  def ask_for_ingredient
+    puts "What's the ingredient you're looking for?"
+    print "> "
+    gets.chomp
   end
 end

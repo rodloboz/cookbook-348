@@ -24,11 +24,26 @@ class Cookbook
     write_csv
   end
 
+  def find_recipe(index)
+    @recipes[index] # return a recipe instance
+  end
+
+  def save_all
+    write_csv
+  end
+
   private
 
   def load_csv
     CSV.foreach(@csv_filepath) do |row|
-      @recipes << Recipe.new(row[0], row[1])
+      attributes = {
+        name: row[0],
+        description: row[1],
+        duration: row[2],
+        difficulty: row[3],
+        done: row[4] == "true" # converting to a real boolean
+      }
+      @recipes << Recipe.new(attributes)
     end
   end
 
